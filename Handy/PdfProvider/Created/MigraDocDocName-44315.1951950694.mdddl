@@ -1,0 +1,508 @@
+﻿\document
+[
+  Info
+  {
+    Title = "Title of the MigraDoc"
+    Subject = "some data description which I have, and want to display in the PDF file..., This is another text, what is happening here, why is this text display..."
+    Author = "Damien"
+  }
+]
+{
+  \styles
+  {
+    Normal
+    {
+      Font
+      {
+        Name = "Verdana"
+      }
+    }
+
+    Heading1
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level1
+      }
+    }
+
+    Heading2
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level2
+      }
+    }
+
+    Heading3
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level3
+      }
+    }
+
+    Heading4
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level4
+      }
+    }
+
+    Heading5
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level5
+      }
+    }
+
+    Heading6
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level6
+      }
+    }
+
+    Heading7
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level7
+      }
+    }
+
+    Heading8
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level8
+      }
+    }
+
+    Heading9
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level9
+      }
+    }
+
+    Header
+    {
+      ParagraphFormat
+      {
+        TabStops +=
+        {
+          Position = "16cm"
+          Alignment = Right
+        }
+      }
+    }
+
+    Footer
+    {
+      ParagraphFormat
+      {
+        TabStops +=
+        {
+          Position = "8cm"
+          Alignment = Center
+        }
+      }
+    }
+
+    InvalidStyleName
+    {
+      Font
+      {
+        Bold = true
+        Underline = Dash
+        Color = Lime
+      }
+    }
+
+    Table : Normal
+    {
+      Font
+      {
+        Name = "Times New Roman"
+        Size = 9
+      }
+    }
+
+    Reference : Normal
+    {
+      ParagraphFormat
+      {
+        SpaceBefore = "5mm"
+        SpaceAfter = "5mm"
+        TabStops +=
+        {
+          Position = "16cm"
+          Alignment = Right
+        }
+      }
+    }
+  }
+  \section
+  {
+    \primaryheader
+    {
+    }
+    \primaryfooter
+    {
+      \paragraph
+      [
+        Format
+        {
+          Font
+          {
+            Size = 9
+          }
+          Alignment = Center
+        }
+      ]
+      {
+        Swapnochura Inc · Sample Street 42 · 56789 Cologne · New York
+      }
+    }
+    \paragraph
+    [
+      Format
+      {
+        Font
+        {
+          Size = 20
+          Color = DarkRed
+        }
+        SpaceBefore = "0.5cm"
+        SpaceAfter = "0.5cm"
+      }
+    ]
+    {
+      Swapnochura\linebreak
+    }
+    \paragraph
+    {
+      123 Main Street, New York, NY 10030
+    }
+    \paragraph
+    {
+       Date: \field(Date)[Format = "dd.MM.yyyy"]
+    }
+    \textframe
+    [
+      Height = "3cm"
+      Width = "7cm"
+      RelativeHorizontal = Margin
+      RelativeVertical = Page
+      Left = Left
+      Top = "5cm"
+    ]
+    {
+    }
+    \paragraph
+    [
+      Style = "Reference"
+      Format
+      {
+        SpaceBefore = "2cm"
+      }
+    ]
+    {
+      \bold{INVOICE}\tab Cologne, \field(Date)[Format = "dd.MM.yyyy"]
+    }
+    \table
+    [
+      TopPadding = 5
+      BottomPadding = 5
+      Borders
+      {
+        Visible = true
+      }
+    ]
+    {
+      \columns
+      {
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "2cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "6cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "3.5cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "2cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "3.5cm"
+        ]
+      }
+      \rows
+      {
+        \row
+        [
+          Format
+          {
+            Font
+            {
+              Bold = true
+            }
+            Alignment = Center
+          }
+          HeadingFormat = true
+          VerticalAlignment = Top
+          Shading
+          {
+            Color = PaleGoldenrod
+          }
+        ]
+        {
+          \cell
+          {
+            Count
+          }
+          \cell
+          {
+            Name
+          }
+          \cell
+          {
+            Price
+          }
+          \cell
+          {
+            quantity
+          }
+          \cell
+          {
+            Total Price
+          }
+        }
+        \row
+        {
+          \cell
+          {
+            1
+          }
+          \cell
+          {
+            Name-1
+          }
+          \cell
+          {
+            1000.00
+          }
+          \cell
+          {
+            1
+          }
+          \cell
+          {
+            1000.00
+          }
+        }
+        \row
+        {
+          \cell
+          {
+            2
+          }
+          \cell
+          {
+            Name-2
+          }
+          \cell
+          {
+            700.00
+          }
+          \cell
+          {
+            1
+          }
+          \cell
+          {
+            700.00
+          }
+        }
+      }
+    }
+    \paragraph
+    {
+    }
+    \table
+    [
+      Format
+      {
+        Alignment = Center
+      }
+      TopPadding = 5
+      BottomPadding = 5
+      Borders
+      {
+        Visible = false
+        Width = 0.75
+      }
+    ]
+    {
+      \columns
+      {
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "2cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "5cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "3cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "4cm"
+        ]
+        \column
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          Width = "3cm"
+        ]
+      }
+      \rows
+      {
+        \row
+        [
+          Format
+          {
+            Alignment = Center
+          }
+          HeadingFormat = true
+          VerticalAlignment = Top
+        ]
+        {
+          \cell
+          \cell
+          \cell
+          \cell
+          {
+            Total Product Price :
+          }
+          \cell
+          {
+            1700.00
+          }
+        }
+        \row
+        [
+          Format
+          {
+            Alignment = Center
+          }
+        ]
+        {
+          \cell
+          \cell
+          \cell
+          \cell
+          {
+            Vat 20% :
+          }
+          \cell
+          {
+            340.000
+          }
+        }
+        \row
+        [
+          Format
+          {
+            Alignment = Center
+          }
+        ]
+        {
+          \cell
+          \cell
+          \cell
+          \cell
+          {
+            Shipping Cost:
+          }
+          \cell
+          {
+            50
+          }
+        }
+        \row
+        [
+          Format
+          {
+            Alignment = Center
+          }
+        ]
+        {
+          \cell
+          \cell
+          \cell
+          \cell
+          {
+            Total:
+          }
+          \cell
+          {
+            2090.000
+          }
+        }
+      }
+    }
+  }
+}

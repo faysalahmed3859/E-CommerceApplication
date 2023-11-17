@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Handy.Models.SubCategory>
+@using Handy.Extensions;
+@{
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+    var i = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+        if (pager.CurrentPage == 1)
+        {
+            i = pager.StartPage;
+        }
+        if (pager.CurrentPage > 1)
+        {
+            i = pager.PageSize * (pager.CurrentPage - pager.StartPage);
+            i++;
+        }
+    }
+
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <p class="recordcount">@ViewBag.TotalRecord record exist</p>
+    </div>
+</div>
+@if (Model != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"><a asp-action="Index" asp-controller="SubCategories" asp-route-sortOrder="@ViewBag.subCategorynam">Name</a></th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr onclick="ShowInSmallPopup('@Url.Action("AddOrEdit","SubCategories",new { id=item.Id},Context.Request.Scheme)','Update SubCategory' )">
+                    <td scope="row">@i</td>
+                    <td>@item.Name</td>
+                    <td>@item.Category.Name</td>
+                    <td>@item.SubCategoryStatus</td>                   
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-12 col-12 col-lg-12">
+            @if (pager.TotalPages > 0)
+            {
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if (pager.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="SubCategories" asp-action="Index" asp-route-pg="1">Frist</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="SubCategories" asp-action="Index" asp-route-pg="@(pager.CurrentPage-1)">Prev</a>
+                            </li>
+                        }
+                        @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                        {
+                            <li class="page-item @( pge==pager.CurrentPage?"active":"")">
+                                <a class="page-link" asp-controller="SubCategories" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                            </li>
+                        }
+                        @if (pager.CurrentPage < pager.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="SubCategories" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="SubCategories" asp-action="Index" asp-route-pg="@pager.TotalPages">Last</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        </div>
+    </div>
+}

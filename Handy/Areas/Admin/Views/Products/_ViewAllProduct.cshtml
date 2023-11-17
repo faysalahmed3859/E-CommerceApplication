@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Handy.Models.Product>
+@using Handy.Extensions;
+@{
+    var i=0;
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+        if (pager.CurrentPage == 1)
+        {
+            i = pager.StartPage;
+        }
+        if (pager.CurrentPage > 1)
+        {
+            i = pager.PageSize * (pager.CurrentPage - pager.StartPage);
+            i++;
+        }
+    }
+
+}
+<div class="row">
+    <div class="col-md-4">
+        <p class="recordcount">@ViewBag.TotalRecord record exist</p>
+    </div>
+</div>
+@if (Model != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"><a asp-action="Index" asp-controller="Products" asp-route-sortOrder="@ViewBag.productnam">Name</a></th>
+                <th scope="col">Brand</th>
+                <th scope="col">Category</th>
+                <th scope="col">Sub Category</th>
+                <th scope="col">Image</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr onclick="ShowInLargePopup('@Url.Action("AddOrEdit","Products",new { id=item.Id},Context.Request.Scheme)','Update Product' )">
+                    <td scope="row">@i</td>
+                    <td>@item.Name</td>
+                    <td>@item.Brand.Name</td>
+                    <td>@item.Category.Name</td>
+                    <td>@item.SubCategory.Name</td>
+                    <td><img src="~/@item.ImagePath" alt="Alternate Text" style="height:30px;width:30px; border-radius:15px;object-fit:contain" /></td>
+                    <td>@item.ProductStatus</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-12 col-12 col-lg-12">
+            @if (pager.TotalPages > 0)
+            {
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if (pager.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Products" asp-action="Index" asp-route-pg="1">Frist</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Products" asp-action="Index" asp-route-pg="@(pager.CurrentPage-1)">Prev</a>
+                            </li>
+                        }
+                        @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                        {
+                            <li class="page-item @( pge==pager.CurrentPage?"active":"")">
+                                <a class="page-link" asp-controller="Products" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                            </li>
+                        }
+                        @if (pager.CurrentPage <pager.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Products" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Products" asp-action="Index" asp-route-pg="@pager.TotalPages">Last</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        </div>
+    </div>
+}

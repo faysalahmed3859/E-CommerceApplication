@@ -1,0 +1,293 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@using Handy.Models
+@using System.Net.Http
+@using Handy.Extensions
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var userRole = HttpContextAccessor.HttpContext.Session.GetString("roleName");
+    int count = 0;
+    List<Product> products = HttpContextAccessor.HttpContext.Session.Get<List<Product>>("products");
+    if (products == null)
+    {
+        products = new List<Product>();
+    }
+    count = products.Count();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handy  eCommerce</title>
+    <link rel="shortcut icon" href="~/Handy/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Handy/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Handy/css/owl.theme.default.min.css">
+    <link href="~/Handy/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <section>
+        <!-- nav -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+            <div class=container>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link navbar-brand" style="color:black;" asp-area="Customer" asp-controller="Home" asp-action="Index">
+
+                                <img src="~/image/Logo.png" />
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" style="color:white;" asp-area="Customer" asp-controller="Home" asp-action="Index"> HOME </a></li>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" style="color:white;" data-bs-toggle="dropdown">  CATEGORY  </a>
+                            @await Component.InvokeAsync("CategoryMenu")
+                        </li>
+                        <li class="nav-item"><a class="nav-link" style="color:white;" asp-area="Customer" asp-controller="Home" asp-action="Shop"> SHOP </a></li>
+                        <li class="nav-item"><a class="nav-link" style="color:white;" asp-area="Customer" asp-controller="Home" asp-action="About"> ABOUT </a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" style="color:white;" data-bs-toggle="dropdown">BLOG </a>
+                            <ul class="dropdown-menu dropdown-menu-end fade-down">
+                                <li><a class="dropdown-item" href="blog.html"> Blog</a></li>
+                                <li><a class="dropdown-item" href="blogpost.html"> Blog Post </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" style="color:white;" asp-area="Customer" asp-controller="Email" asp-action="Index"> CONTACT </a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a class="nav-link" style="color:white;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                            </li>
+                            <li>
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                    <button type="submit" class="nav-link btn btn-link" style="color:white;">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" style="color:white;" asp-area="Identity" asp-page="/Account/Login"> <i class="fa fa-user" style="font-size:24px"></i> </a></li>
+                            @*<li>
+                                    <a asp-area="Customer" asp-controller="User" asp-action="Create">Resistor</a>
+                                </li>*@
+
+                        }
+
+
+                        <li class="nav-item"><a class="nav-link" style="color:white;" asp-area="Customer" asp-controller="Home" asp-action="Cart"> <i class="fa fa-shopping-cart" style="font-size:24px"></i> (@count)</a></li>
+
+                    </ul>
+                </div> <!-- navbar-collapse.// -->
+            </div> <!-- container-fluid.// -->
+
+        </nav>
+
+        <div>
+            <partial name="_CookieConsentPartial" />
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+
+
+
+        @*<footer class="border-top footer text-muted">
+                <div class="container">
+                    &copy; 2021 - TestApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+            </footer>*@
+
+
+        <footer class="bg-dark bg-cover @@classList">
+            <div class="py-12 border-bottom border-gray-700">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+
+                            <!-- Heading -->
+                            <h5 class="mb-7 text-center text-white">Want style Ideas and Treats?</h5>
+
+                            <!-- Form -->
+                            <form class="mb-11">
+                                <div class="form-row align-items-start">
+                                    <div class="col">
+                                        <input type="email" class="form-control form-control-gray-700 form-control-lg" placeholder="Enter Email *">
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+
+                            <!-- Heading -->
+                            <h4 class="mb-6 text-white">Handy</h4>
+
+                            <!-- Social -->
+                            <ul class="list-unstyled list-inline mb-7 mb-md-0">
+                                <li class="list-inline-item">
+                                    <a href="#!" class="text-gray-350">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#!" class="text-gray-350">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#!" class="text-gray-350">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#!" class="text-gray-350">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#!" class="text-gray-350">
+                                        <i class="fa fa-medium"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-6 col-sm">
+
+                            <!-- Heading -->
+                            <h6 class="heading-xxs mb-4 text-white">
+                                Support
+                            </h6>
+
+                            <!-- Links -->
+                            <ul class="list-unstyled mb-7 mb-sm-0">
+                                <li>
+                                    <a class="text-gray-300" href="contact.html">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="faq.html">FAQs</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" data-toggle="modal" href="#modalSizeChart">Size Guide</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="Shipping.html">Shipping &amp; Returns</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-6 col-sm">
+
+                            <!-- Heading -->
+                            <h6 class="heading-xxs mb-4 text-white">
+                                Shop
+                            </h6>
+
+                            <!-- Links -->
+                            <ul class="list-unstyled mb-7 mb-sm-0">
+                                <li>
+                                    <a class="text-gray-300" href="shop.html">Men's Shopping</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="shop.html">Women's Shopping</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="shop.html">Kids' Shopping</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="shop.html">Discounts</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-6 col-sm">
+
+                            <!-- Heading -->
+                            <h6 class="heading-xxs mb-4 text-white">
+                                Company
+                            </h6>
+
+                            <!-- Links -->
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a class="text-gray-300" href="about.html">Our Story</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="#!">Careers</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="#!">Terms &amp; Conditions</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="#!">Privacy &amp; Cookie policy</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-6 col-sm">
+
+                            <!-- Heading -->
+                            <h6 class="heading-xxs mb-4 text-white">
+                                Contact
+                            </h6>
+
+                            <!-- Links -->
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a class="text-gray-300" href="#!">1-202-555-0105</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="#!">1-202-555-0106</a>
+                                </li>
+                                <li>
+                                    <a class="text-gray-300" href="#!">help@handy.com</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="py-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+
+                            <!-- Copyright -->
+                            <p class="text-center mb-3 mb-md-0 font-size-xxs text-muted">
+                                © 2021 All rights reserved. Designed by Team.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Handy/js/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,201 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,100;1,600;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="~/lib/admin-das/AdminLTE.min.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/admin/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>Handy</title>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="brand">
+            <i class='bx bxs-smile'></i>
+            <span class="text">Handy</span>
+        </a>
+        @{ string url = null; }
+
+        @{
+            if (User.IsInRole("Admin"))
+            {
+                <ul class="side-menu top">
+                    <!-- Optionally, you can add icons to the links -->
+
+                    @{ url = "/Admin/Categories/Index"; }
+                    <li class="@(Context.Request.Path.StartsWithSegments(url) ? "active" : null)">
+                        <a href="@url">
+                            <i class='bx bxs-shopping-bag-alt'></i>
+                            <span class="text">Category</span>
+                        </a>
+                    </li>
+                    @{ url = "/Admin/SubCategories/Index"; }
+                    <li class="@(Context.Request.Path.StartsWithSegments(url) ? "active" : null)">
+                        <a href="@url">
+                            <i class='bx bxs-shopping-bag-alt'></i>
+                            <span class="text">SubCategory</span>
+                        </a>
+                    </li>
+                    @{ url = "/Admin/Brands/Index"; }
+                    <li class="@(Context.Request.Path.StartsWithSegments(url) ? "active" : null)">
+                        <a href="@url">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">Brand</span>
+                        </a>
+                    </li>
+                    @{ url = "/Admin/AutoGenerateSerialNumbers/Index"; }
+                    <li class="@(Context.Request.Path.StartsWithSegments(url) ? "active" : null)">
+                        <a href="@url">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">AutoSerialNumber</span>
+                        </a>
+                    </li>
+                    @{ url = "/Admin/Products/Index"; }
+                    <li class="@(Context.Request.Path.StartsWithSegments(url) ? "active" : null)">
+                        <a href="@url">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">Product</span>
+                        </a>
+                    </li>
+                    @{ url = "/Admin/Banners/Index"; }
+                    <li class="@(Context.Request.Path.StartsWithSegments(url) ? "active" : null)">
+                        <a href="@url">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">Banner</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class='bx bxs-message-dots'></i>
+                            <span class="text">Message</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class='bx bxs-group'></i>
+                            <span class="text">Team</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="side-menu">
+                    <li>
+                        <a href="#">
+                            <i class='bx bxs-cog'></i>
+                            <span class="text">Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" }) class="btn btn-default btn-flat logout">
+                            <i class='bx bxs-log-out-circle'></i>
+                            <span class="text">Logout</span>
+                        </a>
+                    </li>
+
+                </ul>
+            }
+        }
+    </section>
+
+
+    <!-- SIDEBAR -->
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <partial name="_LayoutMainHeader" />
+        <!-- NAVBAR -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            @RenderBody()
+        </main>
+
+    </section>
+    <!-- CONTENT -->
+    <!--Small Modal -->
+    <div class="modal fade" id="small-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large modal -->
+    <div class="modal fade" id="large-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="form-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/bccc7b239b.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/admin/script.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

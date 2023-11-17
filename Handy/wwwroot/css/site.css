@@ -1,0 +1,780 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+/*a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}*/
+
+/* Provide sufficient contrast against white background */
+/*a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}*/
+
+/* Sticky footer styles
+-------------------------------------------------- */
+/*html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}*/
+
+/* Sticky footer styles
+-------------------------------------------------- */
+/*html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {*/
+  /* Margin bottom by footer height */
+  /*margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;*/ /* Vertically center the text there */
+/*}*/
+
+
+
+/**Global CSS Start**/
+.rowAction1 {
+    cursor: pointer;
+}
+
+    .rowAction1 span {
+        color: #37BEB0 !important;
+    }
+
+.modal-lg {
+    max-width: 1000px !important;
+}
+
+.datatable > tbody > tr > td {
+    padding: 5px !important;
+}
+
+* {
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+.srcBtn {
+    padding: 4px 8px;
+    border: none;
+    font-size: 12px;
+    background-color: #a7a5a5;
+    border-radius: 3px;
+    outline: none !important;
+}
+
+.searchStringInput {
+    font-size: 12px !important;
+    height: 25px !important;
+    outline: none;
+}
+
+.searchStringInputReport {
+    font-size: 12px !important;
+    height: 25px !important;
+    width: 140px !important;
+    outline: none;
+}
+/**for modal start**/
+/*.modal-dialog {
+    overflow-x: initial !important
+}*/
+
+#view-all {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+    #view-all::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    #view-all::-webkit-scrollbar-thumb {
+        background-color: #bbbbbb;
+    }
+
+    #view-all::-webkit-scrollbar-track-piece:end {
+        margin-right: 600px;
+    }
+
+    #view-all::-webkit-scrollbar-track-piece:start {
+        margin-left: 600px;
+    }
+/**for modal start**/
+.hideDisplayOnEdit {
+    display: none;
+}
+
+.nopadding {
+    padding-left: 3% !important;
+}
+
+.nopaddingNone {
+    padding-left: 0% !important;
+}
+
+.action {
+    width: 100%;
+    padding: 15px 0 30px 0;
+}
+
+    .action .create {
+        padding: 10px 0;
+        left: 0;
+        background-color: none;
+        border: none;
+        outline: none;
+        font-weight: 100;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+        .action .create span {
+            color: #000;
+        }
+
+        .action .create i {
+            padding-right: 8px;
+            color: #000000;
+            font-size: 10px;
+        }
+
+.rowAction {
+    padding: 10px 0;
+    left: 0;
+    background-color: none;
+    border: none;
+    outline: none;
+    font-weight: 100;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+    .rowAction span {
+        color: #000;
+    }
+
+    .rowAction i {
+        padding-right: 8px;
+        color: #000000;
+        font-size: 10px;
+    }
+
+
+.savebtn {
+    color: #000;
+    padding: 8px 15px;
+    display: block;
+    background-color: #fff;
+    border: 1px solid #a7a5a5;
+    outline: none;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.invoicebtn {
+    color: #000;
+    padding: 8px 15px;
+    display: block;
+    background-color: #fff;
+    border: 1px solid #a7a5a5;
+    outline: none;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.savebtn:hover {
+    background-color: #a7a5a5;
+    color: #fff;
+}
+
+#small-modal .modal-title {
+    font-size: 18px !important;
+}
+
+.custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+
+    .table-wrapper-scroll-y::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    .table-wrapper-scroll-y::-webkit-scrollbar-thumb {
+        background-color: #bbbbbb;
+    }
+
+    .table-wrapper-scroll-y::-webkit-scrollbar-track-piece:end {
+        margin-right: 50px;
+    }
+
+    .table-wrapper-scroll-y::-webkit-scrollbar-track-piece:start {
+        margin-left: 50px;
+    }
+
+table th {
+    font-size: 13px !important;
+}
+
+table td {
+    font-size: 13px !important;
+}
+
+.form-group label {
+    font-size: 12px !important;
+}
+
+input {
+    font-size: 12px !important;
+    height: 32px !important;
+    outline: none;
+}
+
+textarea {
+    font-size: 12px !important;
+}
+
+select {
+    font-size: 12px !important;
+    height: 32px !important
+}
+
+.parentMenu {
+    background-color: #f8f6f6;
+}
+
+.active {
+    color: #003cff !important;
+    background-color: #f8f6f6;
+}
+
+.primaryimg {
+    padding: 10px 0 0 40px;
+    box-sizing: border-box;
+}
+
+    .primaryimg #primaryimg {
+        height: 70PX;
+        width: 70PX;
+    }
+
+.displayonEditPri {
+    padding: 10px 0 0 0;
+    box-sizing: border-box;
+}
+
+    .displayonEditPri img {
+        height: 70px !important;
+        width: 70px !important;
+    }
+
+.galleryimg {
+    box-sizing: border-box;
+    padding: 5px 0 0 40px;
+}
+
+.displayonEdit {
+    box-sizing: border-box;
+    padding: 5px 0 0 40px;
+}
+
+.displayonEditPri {
+    box-sizing: border-box;
+    padding: 5px 0 0 40px;
+}
+
+#galleryParent #galleryimg {
+    height: 30PX;
+    margin-bottom: 3px;
+    width: 30PX;
+}
+
+.recordcount {
+    font-size: 12px;
+    padding: 3px 0 0 0;
+}
+
+.pagination li a {
+    color: #000 !important;
+    font-size: 12px !important;
+    padding: 5px 10px;
+}
+
+.pagination .active a {
+    color: #000 !important;
+    background: #DCDCDC !important;
+    border-color: #DCDCDC !important;
+}
+
+.lineitem p {
+    font-size: 13px;
+    width: 100%;
+}
+
+.lineitem {
+    padding: 0 0 12px 0;
+}
+
+#productImg {
+    height: 30px !important;
+    width: auto;
+}
+
+#removeOnlyFeildValue {
+    margin-top: 15px !important;
+}
+
+.lineitem::after {
+    content: '';
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 1px;
+    background: #DCDCDC;
+}
+
+.datatable tr th {
+    font-size: 10px !important;
+}
+
+.remove {
+    display: block;
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    border-radius: 9px;
+    padding-top: 3px;
+    border: 1px solid #DCDCDC;
+    color: #000;
+    cursor: pointer;
+    font-size: 8px;
+    margin-top: 16px;
+}
+/*.addBtn{
+    color: #000;
+    font-size: 10px;
+}
+    .addBtn:hover {
+        color: #000;
+        cursor: pointer;
+    }*/
+.addBtn span {
+    padding: 0 5px;
+}
+
+.addBtn {
+    color: #000;
+    padding: 8px 10px;
+    width: 70px;
+    display: block;
+    background-color: #fff;
+    border: 1px solid #a7a5a5;
+    outline: none;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+    .addBtn:hover {
+        background-color: #a7a5a5;
+        color: #fff;
+        outline: none;
+    }
+/**Global CSS End**/
+/**media query sart**/
+@media screen and (max-width: 920px) {
+}
+
+@media screen and (max-width: 720px) {
+}
+
+@media screen and (max-width: 540px) {
+}
+
+@media screen and (max-width: 320px) {
+}
+/**media query End**/
+
+/**Wrapper CSS Start**/
+.wrapper {
+    display: flex;
+    position: relative;
+}
+/**Sidebar CSS Start**/
+.sidebar {
+    height: 100vh;
+    width: 260px;
+    padding: 40px 0 0 0;
+    top: 0;
+    overflow: hidden;
+    position: fixed;
+    background-color: #fff;
+    left: 0;
+    -webkit-box-shadow: inset -5px 0 5px -5px #DCDCDC;
+    box-shadow: inset -5px 0 5px -5px #DCDCDC;
+    white-space: nowrap;
+    transition: .5s;
+}
+
+    .sidebar:hover {
+        overflow-y: scroll;
+    }
+/**scroll**/
+::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bbbbbb;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track-piece:end {
+    margin-top: 50px;
+}
+
+::-webkit-scrollbar-track-piece:start {
+    margin-bottom: 50px;
+}
+
+.sidebar-head {
+    padding: 0 12px 15px 40px;
+    -webkit-box-shadow: 0 5px 1px -5px #DCDCDC;
+    box-shadow: 0 5px 1px -5px #DCDCDC;
+}
+
+.head-img {
+    padding-top: 4px;
+}
+
+.head-padding {
+    padding: 30px 0 0 0;
+}
+
+.sidebar-head img {
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+    object-fit: cover;
+}
+
+.sidebar-head p {
+    color: #DCDCDC;
+    font-size: 10px;
+    padding: 6px 0 0 0;
+}
+
+.sidebar-head span {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
+.sidebar-body {
+    color: #000;
+}
+
+    .sidebar-body ul {
+        height: 100%;
+        width: 100%;
+        list-style: none;
+    }
+
+        .sidebar-body ul li {
+            line-height: 40px;
+        }
+
+            .sidebar-body ul li a {
+                color: #000;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: 500;
+                display: block;
+                width: 100%;
+                padding-left: 40px;
+                box-sizing: border-box;
+            }
+
+                .sidebar-body ul li a i {
+                    padding-right: 40px;
+                    font-size: 18px;
+                    color: #cecbcb;
+                    width: 10px;
+                }
+
+                .sidebar-body ul li a span {
+                    left: 0;
+                }
+
+                .sidebar-body ul li a:hover {
+                    background-color: #f8f6f6;
+                    cursor: pointer;
+                }
+
+        .sidebar-body ul ul {
+            position: static;
+            display: none;
+        }
+
+            .sidebar-body ul ul li {
+                line-height: 26px;
+            }
+
+                .sidebar-body ul ul li a {
+                    font-size: 13px;
+                    padding-left: 90px;
+                }
+
+.fa-caret-down {
+    padding-left: 20px;
+}
+
+.sidebar-body ul .dropdown-menu0.show {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.sidebar-body ul .dropdown-menu0.hide {
+    display: none;
+}
+
+.sidebar-body ul .dropdown-menu2.show {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.sidebar-body ul .dropdown-menu3.show {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.sidebar-body ul .dropdown-menu4.show {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.sidebar-body ul .dropdown-menu5.show {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.bar {
+    padding: 15px 15px 0 0;
+}
+
+label #sidebar-btn {
+    cursor: pointer;
+}
+
+.current {
+    color: #003cff;
+}
+/****toggler class start****/
+.sidebar.toggle {
+    left: -190px;
+}
+
+.sidebar a span.toggle {
+    display: none;
+}
+
+.sidebar a .fa-caret-down.toggle {
+    display: none;
+}
+
+.sidebar a.toggle {
+    font-size: 25px;
+    margin-left: 170px;
+    width: 80px;
+    margin-top: 10px;
+}
+
+.sidebar .sidebar-head img.toggle {
+    height: 30px;
+    width: 30px;
+    margin-left: 170px;
+}
+
+.sidebar .sidebar-head p.toggle {
+    margin-left: 170px;
+    font-size: 5px;
+}
+
+.main.toggle {
+    margin-left: 90px;
+}
+
+.element::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.bottom-menue {
+    margin-top: 300px;
+    width: 100%;
+}
+
+/****toggler class start****/
+/**Sidebar CSS End**/
+/**Main CSS Start**/
+.main {
+    width: 100%;
+    margin-left: 280px;
+    transition: .5s;
+    overflow: hidden;
+}
+
+.navbar-custom {
+    background-color: #fff !important;
+    -webkit-box-shadow: 0 5px 1px -5px #DCDCDC;
+    box-shadow: 0 5px 1px -5px #DCDCDC;
+    padding: 40px 10px 0 6px;
+}
+
+.navbar-brand {
+    color: #000000;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.logoutbtn {
+    border: 0;
+    outline: 0;
+    background: none;
+    color: #cecbcb;
+}
+
+/**Main CSS End**/
+
+/**Wrapper CSS End**/
+.card-header h1 {
+    font-size: 12px;
+    text-align: left;
+}
+/*login css*/
+.login-background {
+    background-image: url(./../images/login.jpg);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.login-box {
+    width: 320px;
+    height: 420px;
+    background: rgba(154, 18, 179, .6);
+    color: #fff;
+    top: 40%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 15px 0 15px 0;
+}
+
+    .login-box .avater {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: -50px;
+        left: calc(50% - 50px);
+    }
+
+.login-btn {
+    display: block;
+    border: none;
+    outline: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: rgba(154, 18, 179, 1);
+    background: #fff;
+    left: 50%;
+    right: 50%;
+    cursor: pointer;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-btn:hover {
+    background: rgba(103, 65, 114, 1);
+    color: #fff;
+}
+
+
+a{
+    text-decoration: none;
+}
+

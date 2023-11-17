@@ -1,0 +1,1178 @@
+﻿@using Handy.Models
+@model Handy.Models.Product
+
+@{
+    ViewData["Title"] = "ProductDetail";
+    int i;
+    int j;
+}
+@using Handy.Extensions
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    List<Product> products = HttpContextAccessor.HttpContext.Session.Get<List<Product>>("products");
+
+
+    Product product = null;
+    if (products != null)
+    {
+        product = products.FirstOrDefault(c => c.Id == Model.Id);
+    }
+}
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/Handy/css/style.css" rel="stylesheet" />
+    <title>Cart</title>
+</head>
+
+
+<style>
+
+
+    img {
+        vertical-align: middle;
+    }
+
+    /* Position the image container (needed to position the left and right arrows) */
+    .container {
+        position: relative;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+        cursor: pointer;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: rgba(218, 74, 18, 0.8);
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 52%;
+        border-radius: 3px 0 0 3px;
+    }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(218, 74, 18, 0.8);
+        }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* Container for image text */
+    .caption-container {
+        text-align: center;
+        background-color: #222;
+        padding: 2px 16px;
+        color: white;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    ul li {
+        display: inline-block;
+    }
+    /* Six columns side by side */
+    .column {
+        float: left;
+        width: 16.66%;
+    }
+
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+        opacity: 0.4;
+    }
+
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+
+
+    .qty .count {
+        color: #000;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 5px;
+        padding: 0 2px;
+        min-width: 35px;
+        text-align: center;
+    }
+
+    .qty .plus {
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: top;
+        color: white;
+        width: 30px;
+        height: 30px;
+        font: 30px/1 Arial,sans-serif;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+    .qty .minus {
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: top;
+        color: white;
+        width: 30px;
+        height: 30px;
+        font: 30px/1 Arial,sans-serif;
+        text-align: center;
+        border-radius: 50%;
+        background-clip: padding-box;
+    }
+
+    div {
+        text-align: center;
+    }
+
+    .minus:hover {
+        background-color: #717fe0 !important;
+    }
+
+    .plus:hover {
+        background-color: #717fe0 !important;
+    }
+    /*Prevent text selection*/
+    span {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    input {
+        border: 0;
+        width: 2%;
+    }
+
+        nput::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input:disabled {
+            background-color: white;
+        }
+
+</style>
+<body>
+    <!-- nav -->
+    <!-- BREADCRUMB -->
+    <nav class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Breadcrumb -->
+                    <ol class="breadcrumb mb-0 font-size-xs text-gray-400">
+                        <li class="breadcrumb-item">
+                            <a class="text-gray-400" href="index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-gray-400" href="shop.html">Women's </a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            Man's
+                        </li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-2">
+
+
+                            <div class="col">
+                                <div class="row" id="myDiv" onclick="changeImage(event)">
+                                    @if (ViewBag.gallery != null)
+
+                                    {
+                                        @if (Model.ImagePath == null)
+                                        {
+
+                                            <img src="~/uploadimages/No_Image_Avail.png" />
+
+                                        }
+                                        else
+                                        {
+                                            i = 1;
+                                            foreach (var item in ViewBag.gallery)
+                                            {
+                                                <img src="~/@item.ImagePath" alt="" />
+                                                i++;
+                                            }
+
+                                        }
+                                    }
+                                   
+
+                                </div>
+                               
+
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="col-10">
+                            <div class="mySlides">
+                                <div class="numbertext ">1 / 4</div>
+                                @if (ViewBag.gallery != null)
+
+                                {
+                                    j = 0;
+                                    foreach (var item in ViewBag.gallery)
+                                    {
+                                        if (j < 1)
+                                        {
+                                            j=j+1;
+                                            <div>
+                                                <img src="~/@item.Product.ImagePath" alt="" style="width:100%" id="mainImage" />
+                                            </div>
+                                        }
+                                        
+                                    }
+                                }
+                            </div>
+
+                          
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 pl-lg-10">
+
+                    <!-- Header -->
+                    <div class="row mb-1">
+                        <div class="col">
+
+                            <!-- Preheading -->
+                            <a class="text-muted" href="shop.html">Sneakers</a>
+
+                        </div>
+                        <div class="col-auto">
+
+
+                            <a class="font-size-sm text-reset ml-2" href="#reviews">
+                                Reviews (6)
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Heading -->
+                    <form class="m-5" asp-action="Detail" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="hiddenId" asp-for="Id" />
+                        <h3 class="mb-2">Leather Sneakers</h3>
+
+                        <!-- Price -->
+                        <div class="mb-7">
+                            <span class="font-size-lg font-weight-bold text-gray-350 text-decoration-line-through">$@Model.PreviousPrice</span>
+                            <span class="ml-1 font-size-h5 font-weight-bolder text-primary">$@Model.AvailablePrice</span>
+                            <span class="font-size-sm ml-1">(In Stock)</span>
+                        </div>
+
+                        <!-- Form -->
+                        <div class="form-group">
+
+                            <!-- Label -->
+                            <p class="mb-5">
+                                Color: <strong id="colorCaption">White</strong>
+                            </p>
+
+
+                        </div>
+                        
+                        <div class="form-group">
+
+                            <!-- Label -->
+                            <p class="mb-5">
+                                Size: <strong><span id="sizeCaption">7.5</span> US</strong>
+                            </p>
+
+
+
+
+
+
+                            @*<div class="qty mb-5">
+                                <span class="minus bg-dark">-</span>
+                                <input type="text"  name="Quantity"  value="1">
+                                <span class="plus bg-dark">+</span>
+                            </div>*@
+
+<div class="quantity-cart section">
+                                        <span class="dec qtybtn"><i class="fa fa-minus fa-lg"></i></span>
+                                       
+                                            <input asp-for="Quantity" style="width:20px; background-color:white; border:none; font-size:x-large; font-weight: 800" readonly class="qt" type="text" name="Quantity" value="1" id="number" />
+                                            @*<input type="text" value="1">*@
+                                        
+                                        <span class="inc qtybtn"><i class="fa fa-plus fa-lg"></i></span>
+                                    </div>
+
+                            <div class="form-row mb-7">
+
+                                <div class="col-12 col-lg">
+                                    @if (product != null)
+                                    {
+                                        <button type="submit" class="btn btn-block btn-dark mb-2" asp-controller="Home" asp-action="Remove" asp-route-id="@Model.Id">Remove to Cart</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-block btn-dark mb-2" asp-area="Customer" asp-controller="Home" asp-action="Detail">
+                                            Add to Cart
+                                        </button>
+                                    }
+                                    <!-- Submit -->
+
+
+                                </div>
+
+                                <div class="col-12 col-lg-auto">
+
+                                    <!-- Wishlist -->
+                                    <button class="btn btn-outline-dark btn-block mb-2" data-toggle="button">
+                                        Wishlist <i class="fa fa-heart ml-2"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+
+                            <!-- Text -->
+                            <p>
+                                <span class="text-gray-500">Is your size/color sold out?</span>
+                                <a class="text-reset text-decoration-underline" data-toggle="modal" href="#modalWaitList">Join the Wait List!</a>
+                            </p>
+
+                            <!-- Share -->
+                            <p class="mb-0">
+                                <span class="mr-4">Share:</span>
+                                <a class="btn btn-xxs btn-circle btn-light font-size-xxxs text-gray-350" href="#!">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-xxs btn-circle btn-light font-size-xxxs text-gray-350" href="#!">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                                <a class="btn btn-xxs btn-circle btn-light font-size-xxxs text-gray-350" href="#!">
+                                    <i class="fa fa-pinterest-p"></i>
+                                </a>
+                            </p>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="pt-11">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Heading -->
+                    <h4 class="mb-10 text-center">You might also like</h4>
+
+                    <!-- Items -->
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+
+                            <!-- Card -->
+                            <div class="card mb-7">
+
+                                <!-- Image -->
+                                <div class="card-img">
+
+                                    <!-- Image -->
+                                    <a class="card-img-hover" href="product.html">
+
+                                        <img class="card-img-top card-img-back" src="~/image/product-120.jpg" />
+
+
+
+                                    </a>
+
+                                    <!-- Actions -->
+                                    <div class="card-actions row">
+
+                                        <ul class="card-action ">
+
+                                            <div class="col">
+                                            <li> <i class="fa fa-shopping-cart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                                            <li>  <i class="fa fa-heart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                                    </div>
+                                    </ul>
+
+
+
+
+                                </div>
+
+                            </div>
+
+                            <!-- Body -->
+                            <div class="card-body px-0">
+
+                                <!-- Category -->
+                                <div class="font-size-xs">
+                                    <a class="text-muted" href="shop.html">Shoes</a>
+                                </div>
+
+                                <!-- Title -->
+                                <div class="font-weight-bold">
+                                    <a class="text-body" href="product.html">
+                                        Leather mid-heel Sandals
+                                    </a>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="font-weight-bold text-muted">
+                                    $129.00
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+
+                        <!-- Card -->
+                        <div class="card mb-7">
+
+                            <!-- Image -->
+                            <div class="card-img">
+
+                                <!-- Image -->
+                                <a class="card-img-hover" href="product.html">
+
+                                    <img class="card-img-top " src="~/image/product-121.jpg" />
+
+
+                                </a>
+
+                                <!-- Actions -->
+                                <div class="card-actions row">
+
+                                    <ul class="card-action ">
+
+                                        <div class="col">
+                                        <li> <i class="fa fa-shopping-cart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                                        <li>  <i class="fa fa-heart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                                </div>
+                                </ul>
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <!-- Body -->
+                        <div class="card-body px-0">
+
+                            <!-- Category -->
+                            <div class="font-size-xs">
+                                <a class="text-muted" href="shop.html">Dresses</a>
+                            </div>
+
+                            <!-- Title -->
+                            <div class="font-weight-bold">
+                                <a class="text-body" href="product.html">
+                                    Cotton floral print Dress
+                                </a>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="font-weight-bold text-muted">
+                                $40.00
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+
+                    <!-- Card -->
+                    <div class="card mb-7">
+
+
+
+                        <!-- Image -->
+                        <div class="card-img">
+
+                            <!-- Image -->
+                            <a class="card-img-hover" href="product.html">
+
+                                <img class="card-img-top " src="~/image/product-122.jpg" />
+
+
+
+                            </a>
+
+                            <!-- Actions -->
+                            <div class="card-actions row">
+
+                                <ul class="card-action ">
+
+                                    <div class="col">
+                                    <li> <i class="fa fa-shopping-cart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                                    <li>  <i class="fa fa-heart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                            </div>
+                            </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body px-0">
+
+                        <!-- Category -->
+                        <div class="font-size-xs">
+                            <a class="text-muted" href="shop.html">Shoes</a>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="font-weight-bold">
+                            <a class="text-body" href="product.html">
+                                Leather Sneakers
+                            </a>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="font-weight-bold">
+                            <span class="font-size-xs text-gray-350 text-decoration-line-through">$85.00</span>
+                            <span class="text-primary">$85.00</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 d-md-none d-lg-block">
+
+                <!-- Card -->
+                <div class="card mb-7">
+
+                    <!-- Image -->
+                    <div class="card-img">
+
+                        <!-- Image -->
+                        <a href="#!">
+
+                            <img class="card-img-top " src="~/image/product-8.jpg" />
+
+
+                        </a>
+
+                        <!-- Actions -->
+                        <div class="card-actions row">
+
+                            <ul class="card-action ">
+
+                                <div class="col">
+                                <li> <i class="fa fa-shopping-cart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                                <li>  <i class="fa fa-heart btn btn-xs  btn-circle btn-white-primary"></i></li>
+                        </div>
+                        </ul>
+
+
+
+
+                    </div>
+
+                </div>
+
+                <!-- Body -->
+                <div class="card-body px-0">
+
+                    <!-- Category -->
+                    <div class="font-size-xs">
+                        <a class="text-muted" href="shop.html">Tops</a>
+                    </div>
+
+                    <!-- Title -->
+                    <div class="font-weight-bold">
+                        <a class="text-body" href="product.html">
+                            Cropped cotton Top
+                        </a>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="font-weight-bold text-muted">
+                        $29.00
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
+    </section>
+
+
+    <!-- REVIEWS -->
+
+    <section class="pt-9 pb-11" id="reviews">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Heading -->
+                    <h4 class="mb-10 text-center">Customer Reviews</h4>
+
+                    <!-- Header -->
+
+                    <div class="col-12 col-md text-md-center">
+
+                        <!-- Rating -->
+                        <div class="rating font-size-sm text-dark" data-value="4">
+                            <ul class="rating-item">
+                                <li class="rating-item">
+                                    <i class="fa fa-star"></i>
+                                </li>
+                                <li class="rating-item">
+                                    <i class="fa fa-star"></i>
+                                </li>
+                                <li class="rating-item">
+                                    <i class="fa fa-star"></i>
+                                </li>
+                                <li class="rating-item">
+                                    <i class="fa fa-star"></i>
+                                </li>
+                                <li class="rating-item">
+                                    <i class="fa fa-star"></i>
+                                </li>
+                            </ul>
+                            <!-- Count -->
+                            <strong class="font-size-sm ml-2">Reviews (3)</strong>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <!-- New Review -->
+                    <div class="collapse">
+
+                        <!-- Divider -->
+                        <hr class="my-8">
+
+                        <!-- Form -->
+                        <form>
+                            <div class="row">
+                                <div class="col-12 mb-6 text-center">
+
+
+
+                                    <!-- Rating form -->
+                                    <div class="rating-form">
+
+
+                                        <!-- Rating -->
+                                        <div class="rating font-size-sm text-dark" data-value="4">
+                                            <ul class="rating-item">
+                                                <li class="rating-item">
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li class="rating-item">
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li class="rating-item">
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li class="rating-item">
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li class="rating-item">
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Reviews -->
+                    <div class="mt-8">
+
+                        <!-- Review -->
+                        <div class="review">
+                            <div class="review-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-auto">
+
+                                        <!-- Avatar -->
+                                        <div class="avatar avatar-xxl mb-6 mb-md-0">
+                                            <span class="avatar-title rounded-circle">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md">
+
+                                        <!-- Header -->
+                                        <div class="row mb-6">
+                                            <div class="col-12">
+
+                                                <!-- Rating -->
+                                                <div class="rating font-size-sm text-dark" data-value="4">
+                                                    <ul class="rating-item">
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-12">
+
+                                                <!-- Time -->
+                                                <span class="font-size-xs text-muted">
+                                                    Logan Edwards, <time datetime="2019-07-25">25 Jul 2019</time>
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Title -->
+                                        <p class="mb-2 font-size-lg font-weight-bold">
+                                            So cute!
+                                        </p>
+
+                                        <!-- Text -->
+                                        <p class="text-gray-500">
+                                            Justo ut diam erat hendrerit. Morbi porttitor, per eu. Sodales curabitur diam sociis. Taciti lobortis nascetur. Ante laoreet odio hendrerit.
+                                            Dictumst curabitur nascetur lectus potenti dis sollicitudin habitant quis vestibulum.
+                                        </p>
+
+                                        <!-- Footer -->
+                                        <div class="row align-items-center">
+                                            <div class="col-auto d-none d-lg-block">
+
+                                                <!-- Text -->
+                                                <p class="mb-0 font-size-sm">Was this review helpful?</p>
+
+                                            </div>
+                                            <div class="col-auto mr-auto">
+
+                                                <!-- Rate -->
+                                                <div class="rate">
+                                                    <a class="rate-item" data-toggle="vote" href="#" role="button">
+                                                        <i class="fa fa-thumbs-up"><span>3</span></i>
+                                                    </a>
+                                                    <a class="rate-item" data-toggle="vote" data-count="0" href="#" role="button">
+                                                        <i class="fa fa-thumbs-down"><span>0</span></i>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-auto d-none d-lg-block">
+
+                                                <!-- Text -->
+                                                <p class="mb-0 font-size-sm">Comments (0)</p>
+
+                                            </div>
+                                            <div class="col-auto">
+
+                                                <!-- Button -->
+                                                <a class="btn btn-xs btn-outline-border" href="#!">
+                                                    Comment
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review -->
+                        <div class="review">
+
+                            <!-- Body -->
+                            <div class="review-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-auto">
+
+                                        <!-- Avatar -->
+                                        <div class="avatar avatar-xxl mb-6 mb-md-0">
+                                            <span class="avatar-title rounded-circle">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md">
+
+                                        <!-- Header -->
+                                        <div class="row mb-6">
+                                            <div class="col-12">
+                                                <!-- Rating -->
+                                                <div class="rating font-size-sm text-dark" data-value="4">
+                                                    <ul class="rating-item">
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="rating-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+
+                                                <!-- Time -->
+                                                <span class="font-size-xs text-muted">
+                                                    Sophie Casey, <time datetime="2019-07-07">07 Jul 2019</time>
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Title -->
+                                        <p class="mb-2 font-size-lg font-weight-bold">
+                                            Cute, but too small
+                                        </p>
+
+                                        <!-- Text -->
+                                        <p class="text-gray-500">
+                                            Shall good midst can't. Have fill own his multiply the divided. Thing great. Of heaven whose signs.
+                                        </p>
+
+                                        <!-- Footer -->
+                                        <div class="row align-items-center">
+                                            <div class="col-auto d-none d-lg-block">
+
+                                                <!-- Text -->
+                                                <p class="mb-0 font-size-sm">Was this review helpful?</p>
+
+                                            </div>
+                                            <div class="col-auto mr-auto">
+
+                                                <!-- Rate -->
+                                                <div class="rate">
+                                                    <a class="rate-item" data-toggle="vote" href="#" role="button">
+                                                        <i class="fa fa-thumbs-up"><span>2</span></i>
+                                                    </a>
+                                                    <a class="rate-item" data-toggle="vote" href="#" role="button">
+                                                        <i class="fa fa-thumbs-down"><span>1</span></i>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-auto d-none d-lg-block">
+
+                                                <!-- Text -->
+                                                <p class="mb-0 font-size-sm">Comments (1)</p>
+
+                                            </div>
+                                            <div class="col-auto">
+
+                                                <!-- Button -->
+                                                <a class="btn btn-xs btn-outline-border" href="#!">
+                                                    Comment
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Child review -->
+                            <div class="review review-child">
+                                <div class="review-body">
+
+                                    <!-- Content -->
+                                    <div class="row">
+                                        <div class="col-12 col-md-auto">
+
+                                            <!-- Avatar -->
+                                            <div class="avatar avatar-xxl mb-6 mb-md-0">
+                                                <span class="avatar-title rounded-circle">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-md">
+
+                                            <!-- Header -->
+                                            <div class="row mb-6">
+                                                <div class="col-12">
+
+                                                    <!-- Rating -->
+                                                    <div class="rating font-size-sm text-dark" data-value="4">
+                                                        <ul class="rating-item">
+                                                            <li class="rating-item">
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="rating-item">
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="rating-item">
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="rating-item">
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="rating-item">
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
+                                                    <div class="col-12">
+
+                                                        <!-- Time -->
+                                                        <span class="font-size-xs text-muted">
+                                                            William Stokes, <time datetime="2019-07-14">14 Jul 2019</time>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- Title -->
+                                                <p class="mb-2 font-size-lg font-weight-bold">
+                                                    Very good
+                                                </p>
+
+                                                <!-- Text -->
+                                                <p class="text-gray-500">
+                                                    Made face lights yielding forth created for image behold blessed seas.
+                                                </p>
+
+                                                <!-- Footer -->
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto d-none d-lg-block">
+
+                                                        <!-- Text -->
+                                                        <p class="mb-0 font-size-sm">Was this review helpful?</p>
+
+                                                    </div>
+                                                    <div class="col-auto mr-auto">
+
+                                                        <!-- Rate -->
+                                                        <div class="rate">
+                                                            <a class="rate-item" data-toggle="vote" href="#" role="button">
+                                                                <i class="fa fa-thumbs-up"><Span>7</Span></i>
+
+                                                            </a>
+                                                            <a class="rate-item" data-toggle="vote" data-count="0" href="#" role="button">
+                                                                <i class="fa fa-thumbs-down"><Span>0</Span></i>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-auto d-none d-lg-block mr-auto">
+
+                                                        <!-- Text -->
+                                                        <p class="mb-0 font-size-sm">Comments (0)</p>
+
+                                                    </div>
+                                                    <div class="col-auto">
+
+                                                        <!-- Button -->
+                                                        <a class="btn btn-xs btn-outline-border" href="#!">
+                                                            Comment
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script>
+       
+
+    </script>
+    <script type="text/javascript">
+        var images = document.getElementById("myDiv").getElementsByTagName("img");
+        for (var i = 0; i < images.length; i++) {
+            images[i].onmouseover = function () {
+                this.style.cursor = 'hand';
+                this.style.borderColor = 'grey';
+            }
+            images[i].onmouseout = function () {
+                this.style.cursor = 'pointer';
+                this.style.borderColor = 'white';
+            }
+        }
+        function changeImage(event) {
+            event = event || window.event;
+            var targetElement = event.target || event.srcElement;
+            if (targetElement.tagName == "IMG") {
+                document.getElementById("mainImage").src = targetElement.getAttribute("src");
+            }
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            captionText.innerHTML = dots[slideIndex - 1].alt;
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

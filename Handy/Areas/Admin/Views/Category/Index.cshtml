@@ -1,0 +1,21 @@
+﻿@*@model IEnumerable<Handy.Models.Category>
+
+@{ ViewData["Title"] = "Index"; }
+
+<div class="col-md-4">
+
+    <a onclick="showInPopup1('@Url.Action("AddOrEdit","Category",null,Context.Request.Scheme)','Category Details' )" class="btn bg-info text-white"><i class="fas fa-random"></i> New Category</a>
+    <i class="glyphicon glyphicon-plus"></i>
+
+</div>
+
+<div id="placeHolderHere"></div>
+<hr />
+<div id="view-all" class="card-body">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

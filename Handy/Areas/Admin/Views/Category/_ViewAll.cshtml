@@ -1,0 +1,44 @@
+﻿@*@model IEnumerable<Handy.Models.Category>
+@{
+    int count1 = 1;
+}
+<div class="col-md-12 offset-md-0">
+
+    @{
+        if (Model.ToList().Count <= 0)
+        {
+            <h1>No Category Added Yet</h1>
+        }
+        else
+        {
+            <table id="myTable" class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td> Name</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@count1</td>
+                                <td>@item.Name</td>
+                                <td>
+                                    <a onclick="showInPopup1('@Url.Action("AddOrEdit","Category",new { id=item.Id},Context.Request.Scheme)','Update Category' )" class="btn btn-sm btn-info text-white"><i class="fas fa-random"></i></a>
+                                    <a onclick="Delete('@Url.Action("Delete","Category",new { id=item.Id},Context.Request.Scheme)','Delete Category' )" class="btn btn-sm btn-danger text-white"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            count1++;
+                        }
+
+                    }
+                </tbody>
+            </table>
+
+        }
+    }
+
+</div>*@

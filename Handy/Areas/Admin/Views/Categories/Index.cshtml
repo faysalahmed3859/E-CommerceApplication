@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Handy.Models.Category>
+@using Handy.Extensions;
+@{
+    ViewData["Title"] = "Categories";
+    if (ViewBag.srcString==null)
+    {
+        ViewBag.srcString = "";
+    }
+}
+
+<div class="action">
+    <div class="row">
+        <div class="col-md-2 col-12 col-lg-2">
+            <a class="create" onclick="ShowInSmallPopup('@Url.Action("AddOrEdit","Categories",null,Context.Request.Scheme)','New Category' )"><i class="fas fa-plus"></i><span>New</span></a>
+            
+        </div>
+        <div class="col-md-4 offset-md-6 col-lg-4 offset-lg-6 col-12">
+            <form ap-action="Index" asp-controller="Categories" method="get">
+                <input type="text" class="searchStringInput" value="@ViewBag.srcString" name="searchString" />
+                <button class="srcBtn" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="body">
+    <div class="row">
+        <div class="col-md-12 col-12 col-lg-12">
+            <div id="view-all">
+                @await Html.PartialAsync("_ViewAllCategory", Model)
+            </div>
+        </div>
+    </div>
+</div>
+

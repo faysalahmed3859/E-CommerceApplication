@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h2 class="text-info">Delete User</h2>
+<form asp-action="Delete" method="post" id="role-form" enctype="multipart/form-data">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <h5 style="color:red;">Do you want to Delete ?</h5>
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Role Name</label>
+            </div>
+            <input type="hidden" name="id" value="@ViewBag.id" />
+            <div class="col-5">
+                <input id="name"  readonly="readonly" name="name" required="required" value="@ViewBag.name" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Delete" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial");
+    }
+    <script>
+    $(document).ready(function () {
+        $("#user-form").validate({
+            rules: {
+                UserName: {
+                    required: true,
+
+                },
+                 PasswordHash: {
+                    required: true,
+
+                },
+                  FirstName: {
+                    required: true,
+
+                },
+                LastName: {
+                    required: true,
+                }
+
+                },
+                messages: {
+                    UserName: "Enter your Email",
+                    PasswordHash: "Enter your Password",
+                    FirstName: "Enter your First Name",
+                    LastName:"Enter your Last Name"
+                }
+
+        });
+    });
+    </script>
+}

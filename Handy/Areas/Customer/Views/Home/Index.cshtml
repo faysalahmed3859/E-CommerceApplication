@@ -1,0 +1,518 @@
+﻿@using Handy.Models
+@model IndexVM
+
+@{
+    if (User.IsInRole("Admin"))
+    {
+        <!-- MAIN -->
+        <ul class="box-info">
+            <li>
+                <i class='bx bxs-calendar-check'></i>
+                <span class="text">
+                    <h3>1020</h3>
+                    <p>New Order</p>
+                </span>
+            </li>
+            <li>
+                <i class='bx bxs-group'></i>
+                <span class="text">
+                    <h3>2834</h3>
+                    <p>Visitors</p>
+                </span>
+            </li>
+            <li>
+                <i class='bx bxs-dollar-circle'></i>
+                <span class="text">
+                    <h3>$2543</h3>
+                    <p>Total Sales</p>
+                </span>
+            </li>
+        </ul>
+
+
+        <!-- MAIN -->
+    }
+    else
+    {
+        int count1 = 0;
+        int count2 = 0;
+        int count3 = 0;
+        int count4 = 0;
+        int count5 = 0;
+
+      <body>
+         <section>
+            <div class="slideshow-container">
+                @foreach (var banner in Model.Banners)
+                {
+                    <div class="mySlides1">
+                        <img src="@banner.ImagePath" style="width:100% ;">
+                        <div class="col-12 previ">
+                            <div>
+                                <h2>@banner.Name</h2>
+                                @*<h3>@banner.Description</h3>*@
+                            <p class="p-3 shop" style="border: 1px solid black;" asp-area=" Customer" asp-controller="Home" asp-action="Shop">Shop now</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+            </div>
+
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+
+
+
+            <hr class="m-4">
+            <section class="pt-6" data-aos="fade-left"
+                     data-aos-duration="3000">
+                <div class="container-fluid px-3 px-md-6">
+                    <div class="row mx-n3">
+                        <div class="col-12 col-sm-4 d-flex flex-column px-3">
+
+                            <!-- Card-->
+                            <div class="card card-xl mb-3 mb-sm-0" style="min-height: 280px">
+
+                                <!-- Background -->
+                                <div class="card-bg">
+                                    <div class="card-bg-img bg-cover">
+                                        <a href="image/product1.jpg"><img src="image/product1.jpg"></a>
+                                    </div>
+                                </div>
+
+                                <!-- Body -->
+                                <div class="card-body my-auto">
+
+                                    <!-- Heading -->
+                                    <h5 class="mb-0">Summer Hats</h5>
+
+                                    <!-- Link -->
+                                    <a class="btn btn-link stretched-link px-0 text-reset">
+                                        Shop Now  <span> →</span>
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-sm-4 d-flex flex-column px-3">
+
+                            <!-- Card-->
+                            <div class="card card-xl mb-3 mb-sm-0" style="min-height: 280px;">
+
+                                <!-- Background -->
+                                <div class="card-bg">
+                                    <div class="card-bg-img bg-cover">
+
+                                        <a href="image/product2.jpg"><img src="image/product2.jpg"></a>
+                                    </div>
+                                </div>
+
+                                <!-- Body -->
+                                <div class="card-body my-auto">
+
+                                    <!-- Heading -->
+                                    <h5 class="mb-0">Men Hats</h5>
+
+                                    <!-- Link -->
+                                    <a class="btn btn-link stretched-link px-0 text-reset">
+                                        Shop Now <span> →</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-sm-4 d-flex flex-column px-3">
+
+                            <!-- Card-->
+                            <div class="card card-xl bg-cover bg-hover" style="min-height: 280px;">
+
+                                <!-- Background -->
+                                <div class="card-bg">
+                                    <div class="card-bg-img bg-cover">
+
+                                        <a href="image/product24.jpg"><img src="image/product24.jpg"></a>
+                                    </div>
+                                </div>
+
+                                <!-- Body -->
+                                <div class="card-body my-auto">
+
+                                    <!-- Heading -->
+                                    <h5 class="mb-0">Floral Dresses</h5>
+
+                                    <!-- Link -->
+                                    <a class="btn btn-link stretched-link px-0 text-reset">
+                                        Shop Now <span> →</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ARRIVALS -->
+            <section class="py-12" data-aos="fade-right" data-aos-duration="3000">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <!-- Heading -->
+                            <h2 class="mb-10 text-center">New Arrivals</h2>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="owl-carousel owl-theme">
+                    @foreach (var product in Model.Products)
+                    {
+                        if (count1 < 10)
+                        {
+                            count1 = count1 + 1;
+
+
+                            <div class="item">
+
+                                <div class="card">
+
+                                    <!-- Image -->
+                                    <img class="card-img-top" src="@product.ImagePath" alt="...">
+
+
+
+                                    <!-- Action -->
+                                    <button class="btn btn-xs btn-circle btn-white-primary card-action card-action-right" data-toggle="button">
+
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+                                    <!-- Button -->
+                                    <a asp-area="Customer" asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id">
+                                        <button class="btn btn-xs btn-block btn-dark card-btn" data-toggle="modal" data-target="#modalProduct">
+                                            Product Details
+                                        </button>
+                                    </a>
+
+
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+                </div>
+
+
+            </section>
+
+            <!-- image/slider -->
+            <section class="pb-12">
+                <div id="carouselExampleInterval" class="carousel slide container " data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active " data-bs-interval="1000">
+
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="image/product-34.jpg" class="d-block w-75" class="img-fluid" alt="...">
+                                    </div>
+                                    <div class="col-6">
+
+                                        <!-- Preheading -->
+                                        <h6 class="heading-xxs text-center text-gray-400">
+                                            Perfect summer
+                                        </h6>
+
+                                        <!-- Heading -->
+                                        <h3 class="mb-10 text-center">
+                                            Summer Days Look
+                                        </h3>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="card col-md-5 col-5 ">
+
+
+                                                <!-- Image -->
+                                                <div class="card-img  ">
+
+                                                    <!-- Action -->
+                                                    <button class="btn btn-xs btn-circle btn-white-primary card-action card-action-right" data-toggle="button">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+
+                                                    <!-- Image -->
+                                                    <img class=" card-img-top w-100" src="image/product-35.jpg" alt="...">
+                                                    <div class="text-center mt-2">
+                                                        <div>
+                                                            <a class=" text-reset " href="Cart.html">Animal crossbody Bag</a>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-gray-350 text-decoration-line-through">$90.00</span>
+                                                            <span class=" text-primary">$69.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="carousel-item" data-bs-interval="4000">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="image/product-36.jpg" class="d-block w-75" class="img-fluid" alt="...">
+                                    </div>
+                                    <div class="col-6">
+
+                                        <!-- Preheading -->
+                                        <h6 class="heading-xxs text-center text-gray-400">
+                                            Perfect summer
+                                        </h6>
+
+                                        <!-- Heading -->
+                                        <h3 class="mb-10 text-center">
+                                            Summer Days Look
+                                        </h3>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="card col-md-5 col-5 ">
+
+
+                                                <!-- Image -->
+                                                <div class="card-img  ">
+
+                                                    <!-- Action -->
+                                                    <button class="btn btn-xs btn-circle btn-white-primary card-action card-action-right" data-toggle="button">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+
+                                                    <!-- Image -->
+                                                    <img class=" card-img-top w-100" src="image/product-35.jpg" alt="...">
+                                                    <div class="text-center mt-2">
+                                                        <div>
+                                                            <a class=" text-reset " href="Cart.html">Jacket with Pockets</a>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-gray-350 text-decoration-line-through">$90.00</span>
+                                                            <span class=" text-primary">$69.00</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="image/product-138.jpg" class="d-block w-75" class="img-fluid" alt="...">
+                                    </div>
+                                    <div class="col-6">
+
+                                        <!-- Preheading -->
+                                        <h6 class="heading-xxs text-center text-gray-400">
+                                            Perfect summer
+                                        </h6>
+
+                                        <!-- Heading -->
+                                        <h3 class="mb-10 text-center">
+                                            Summer Days Look
+                                        </h3>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="card col-md-5 col-5 ">
+
+
+                                                <!-- Image -->
+                                                <div class="card-img  ">
+
+                                                    <!-- Action -->
+                                                    <button class="btn btn-xs btn-circle btn-white-primary card-action card-action-right" data-toggle="button">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+
+                                                    <!-- Image -->
+                                                    <img class=" card-img-top w-100" src="image/product-139.jpg" alt="...">
+                                                    <div class="text-center mt-2">
+                                                        <div>
+                                                            <a class=" text-reset " href="Cart.html">Jacket with Pockets</a>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-gray-350 text-decoration-line-through">$90.00</span>
+                                                            <span class=" text-primary">$69.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true" style="background-image: url(/image/arrow2.png);"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true" style="background-image: url(/image/arrow1.png);"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </section>
+            <!-- BLOG -->
+            <section class="py-12 bg-light" data-aos="fade-up"
+                     data-aos-duration="2000">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Preheading -->
+                            <h6 class="heading-xxs mb-3 text-center text-gray-400">
+                                Our blog
+                            </h6>
+                            <!-- Heading -->
+                            <h2 class="mb-10 text-center">Latest in Blog</h2>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+
+                            <!-- Card -->
+                            <div class="card mb-7 shadow shadow-hover lift">
+
+                                <!-- Image -->
+                                <a href="blog-post.html">
+                                    <img src="image/blog-1.jpg" alt="..." class="card-img-top">
+                                </a>
+
+                                <!-- Body -->
+                                <div class="card-body px-8 py-7">
+
+                                    <!-- Time -->
+                                    <p class="mb-3 font-size-xs">
+                                        <a class="text-muted" href="blog.html">Fashion / Jun 20, 2019</a>
+                                    </p>
+
+                                    <!-- Heading -->
+                                    <h6 class="mb-0">
+                                        <a class="text-body" href="blog-post.html">
+                                            Us yielding Fish sea night night the said him two
+                                        </a>
+                                    </h6>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-md-4">
+
+                            <!-- Card -->
+                            <div class="card mb-7 shadow shadow-hover lift">
+
+                                <!-- Image -->
+                                <a href="blog-post.html">
+                                    <img src="image/blog-2.jpg" alt="..." class="card-img-top">
+                                </a>
+
+                                <!-- Body -->
+                                <div class="card-body px-8 py-7">
+
+                                    <!-- Time -->
+                                    <p class="mb-3 font-size-xs">
+                                        <a class="text-muted" href="blog.html">Travel / Jun 13, 2019</a>
+                                    </p>
+
+                                    <!-- Heading -->
+                                    <h6 class="mb-0">
+                                        <a class="text-body" href="blog-post.html">
+                                            Tree earth fowl given moveth deep lesser After
+                                        </a>
+                                    </h6>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-md-4">
+
+                            <!-- Card -->
+                            <div class="card mb-7 shadow shadow-hover lift">
+
+                                <!-- Image -->
+                                <a href="blog-post.html">
+                                    <img src="image/blog-3.jpg" alt="..." class="card-img-top">
+                                </a>
+
+                                <!-- Body -->
+                                <div class="card-body px-8 py-7">
+
+                                    <!-- Time -->
+                                    <p class="mb-3 font-size-xs">
+                                        <a class="text-muted" href="blog.html">Lifestyle / Jun 08, 2019</a>
+                                    </p>
+
+                                    <!-- Heading -->
+                                    <h6 class="mb-0">
+                                        <a class="text-body" href="blog-post.html">
+                                            Given Set was without from god divide rule Hath
+                                        </a>
+                                    </h6>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+    </body>
+    }
+}
+

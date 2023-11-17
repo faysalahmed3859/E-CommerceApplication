@@ -1,0 +1,27 @@
+﻿<cs-pager cs-paging-pagenumber=Model.PageNumber
+          cs-paging-totalitems=Model.TotalItems
+          cs-paging-pageSize=Model.PageSize
+          cs-pagenumber-param="pagenumber"
+          asp-controller=@ViewData["Controller"]
+          asp-action=@ViewData["Action"] 
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link"
+></cs-pager>
+
+
+
+@*<cs-pager cs-paging-pagenumber=Model.PageNumber
+          cs-paging-totalitems=Model.TotalItems
+          cs-paging-pageSize=Model.PageSize
+          cs-pagenumber-param="pagenumber"
+          asp-area="Admin"
+          asp-controller="Home"
+          asp-action="Index"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link"></cs-pager>*@

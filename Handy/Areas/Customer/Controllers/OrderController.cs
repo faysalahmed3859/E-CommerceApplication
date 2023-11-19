@@ -130,7 +130,7 @@ namespace Handy.Areas.Customer.Controllers
                         smtp.Port = 587;
                         smtp.UseDefaultCredentials = true;
                         smtp.EnableSsl = true;
-                        smtp.Credentials = new System.Net.NetworkCredential("faysalahmed2235@gmail.com", "Tanvir@12345");
+                        smtp.Credentials = new System.Net.NetworkCredential("faysalahmed2235@gmail.com", "ppp");
                         FileStreamResult stm = File(stream, "application/pdf");
                         var b = new byte[stream.Length];
                         stream.Read(b, 0, b.Length);

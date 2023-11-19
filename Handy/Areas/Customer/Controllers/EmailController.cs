@@ -36,7 +36,7 @@ namespace Handy.Areas.Customer.Controllers
                 smtp.Port = 587;
                 smtp.UseDefaultCredentials = true;
                 smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential("faysalahmed2235@gmail.com", "Tanvir@12345");
+                smtp.Credentials = new System.Net.NetworkCredential("faysalahmed2235@gmail.com", "pppp");
                 smtp.Send(mm);
                 ViewBag.Message = "The Mail Was Send Successfully";
                 ModelState.Clear();
